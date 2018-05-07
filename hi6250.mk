@@ -204,7 +204,8 @@ PRODUCT_PACKAGES += \
 # RIL
 PRODUCT_PACKAGES += \
     librilutils \
-    mploader
+    mploader \
+    qti-telephony-common
 
 # Sensors
 PRODUCT_PACKAGES += \
