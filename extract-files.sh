@@ -60,6 +60,9 @@ fi
 
 function blob_fixup() {
     case "${1}" in
+	vendor/lib*/hw/audio.primary.hi6250.so)
+	    "${PATCHELF}" --add-needed "libprocessgroup.so" "${2}"
+	    ;;
 	vendor/lib64/egl/libGLES_mali.so|vendor/lib64/hw/gralloc.hi6250.so)
 	    "${PATCHELF}" --add-needed "libutilscallstack.so" "${2}"
 	    ;;
