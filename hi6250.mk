@@ -132,6 +132,10 @@ PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service \
     lights.hi6250
 
+# Linker
+PRODUCT_PACKAGES += \
+    public.libraries.txt
+
 # MAC Loader
 PRODUCT_PACKAGES += \
     mac_nvme
@@ -196,6 +200,11 @@ DEVICE_PACKAGE_OVERLAYS := $(COMMON_PATH)/overlay
 PRODUCT_PACKAGES += \
     android.hardware.power@1.0-impl \
     android.hardware.power@1.0-service
+
+# Protobuf
+PRODUCT_PACKAGES += \
+    libprotobuf-cpp-full-vendorcompat \
+    libprotobuf-cpp-lite-vendorcompat
 
 # Radio
 PRODUCT_PACKAGES += \

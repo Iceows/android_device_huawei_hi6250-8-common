@@ -180,3 +180,14 @@ LOCAL_MODULE_SUFFIX := .rc
 LOCAL_MODULE_CLASS := ETC
 LOCAL_MODULE_PATH := $(TARGET_OUT_VENDOR)
 include $(BUILD_PREBUILT)
+
+#
+# linker
+#
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := public.libraries.txt
+LOCAL_SRC_FILES := linker/public.libraries.txt
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_PATH := $(TARGET_OUT_VENDOR_ETC)
+include $(BUILD_PREBUILT)
