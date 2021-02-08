@@ -71,6 +71,9 @@ BOARD_ROOT_EXTRA_FOLDERS += \
     splash2 \
     version
 
+# Treble
+BOARD_VNDK_VERSION := current
+
 # Vendor
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_VENDOR := vendor
