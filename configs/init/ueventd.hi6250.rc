@@ -77,4 +77,4 @@
 /dev/block/mmcblk0p45				0660	system	system
 /dev/block/mmcblk0p46				0660	system	system
 /dev/block/mmcblk0p52				0660	system	system
-
+/dev/tas2560					0660	root	audio
