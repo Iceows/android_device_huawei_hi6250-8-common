@@ -14,7 +14,25 @@ PRODUCT_PACKAGES += \
 # Init
 PRODUCT_PACKAGES += \
     fstab.hi6250 \
-    init.recovery.hi6250.rc
+    init.audio.rc \
+    init.balong_modem.rc \
+    init.connectivity.bcm43455.rc \
+    init.connectivity.gps.rc \
+    init.connectivity.hi1102.rc \
+    init.connectivity.rc \
+    init.device.rc \
+    init.extmodem.rc \
+    init.hi6250.rc \
+    init.hisi.rc \
+    init.ko.rc \
+    init.manufacture.rc \
+    init.performance.rc \
+    init.platform.rc \
+    init.post-fs-data.rc \
+    init.protocol.rc \
+    init.recovery.hi6250.rc \
+    init.tee.rc \
+    ueventd.hi6250.rc
 
 # Media
 PRODUCT_COPY_FILES += \
