@@ -7,6 +7,9 @@
 ## Common Path
 COMMON_PATH := device/huawei/hi6250-common
 
+## Inherit common vendor blobs
+$(call inherit-product, vendor/huawei/hi6250-common/hi6250-common-vendor.mk)
+
 # Graphics
 PRODUCT_PACKAGES += \
 ￼    libion
