@@ -78,6 +78,9 @@ BOARD_ROOT_EXTRA_FOLDERS += \
     splash2 \
     version
 
+# SELinux
+BOARD_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
+
 # Treble
 BOARD_VNDK_VERSION := current
 
