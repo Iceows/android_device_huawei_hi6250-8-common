@@ -80,6 +80,7 @@ PRODUCT_PACKAGES += \
     init.extmodem.rc \
     init.hi6250.rc \
     init.hisi.rc \
+    init.hisi.usb.rc \
     init.ko.rc \
     init.manufacture.rc \
     init.performance.rc \
