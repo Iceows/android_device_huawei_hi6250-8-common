@@ -109,7 +109,7 @@ BOARD_ROOT_EXTRA_FOLDERS += \
     version
 
 # SELinux
-BOARD_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
+BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
 
 # Vendor
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
