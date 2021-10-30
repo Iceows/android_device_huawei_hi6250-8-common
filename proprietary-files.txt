@@ -256,14 +256,14 @@ vendor/bin/hw/rild
 vendor/lib/libbalong-ril.so
 vendor/lib/libbalong-ril-1.so
 vendor/lib/libbalong-ril-2.so
-vendor/lib/libril.so
+-vendor/lib/libril.so
 vendor/lib/lib_wifi_sar.so
 vendor/lib/vendor.huawei.hardware.radio@1.0.so
 vendor/lib/vendor.huawei.hardware.radio@1.1.so
 vendor/lib64/libbalong-ril.so
 vendor/lib64/libbalong-ril-1.so
 vendor/lib64/libbalong-ril-2.so
-vendor/lib64/libril.so
+-vendor/lib64/libril.so
 vendor/lib64/lib_wifi_sar.so
 vendor/lib64/vendor.huawei.hardware.radio@1.0.so
 vendor/lib64/vendor.huawei.hardware.radio@1.1.so
