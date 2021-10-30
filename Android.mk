@@ -70,5 +70,13 @@ ALL_DEFAULT_INSTALLED_MODULES += \
 	$(VULKAN_SYMLINK) \
 	$(VULKAN64_SYMLINK)
 
+# native_packages hack
+NATIVE_PACKAGES_FIXUP := $(TARGET_OUT_VENDOR)/etc/native_packages.xml
+$(NATIVE_PACKAGES_FIXUP): $(TARGET_OUT_VENDOR)/etc/native_packages.bin
+	@echo "Move native_packages.bin to native_packages.xml"
+	$(hide) mv $(TARGET_OUT_VENDOR)/etc/native_packages.bin $@
+
+ALL_DEFAULT_INSTALLED_MODULES += $(NATIVE_PACKAGES_FIXUP)
+
 include $(call all-makefiles-under,$(LOCAL_PATH))
 endif
