@@ -50,4 +50,10 @@ setup_vendor "$DEVICE_COMMON" "$VENDOR" "$LINEAGE_ROOT" true "$CLEAN_VENDOR"
 
 extract "$MY_DIR"/proprietary-files.txt "$SRC" "$SECTION"
 
+# Fix proprietary blobs
+COMMON_BLOB_ROOT="$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE_COMMON"/proprietary
+
+# replace native_packages.xml with native_packages.bin
+sed -i "s/native_packages\.xml/native_packages.bin/g" "$COMMON_BLOB_ROOT"/vendor/bin/teecd
+
 "$MY_DIR"/setup-makefiles.sh
