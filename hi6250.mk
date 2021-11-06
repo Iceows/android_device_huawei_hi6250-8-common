@@ -117,7 +117,6 @@ PRODUCT_PACKAGES += \
     init.connectivity.bcm43455.rc \
     init.connectivity.gps.rc \
     init.connectivity.hi1102.rc \
-    init.connectivity.rc \
     init.device.rc \
     init.extmodem.rc \
     init.hi6250.rc \
