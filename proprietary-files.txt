@@ -3,7 +3,6 @@
 #
 
 # Audio
-vendor/etc/audio_effects.conf
 vendor/lib/hw/audio.primary.hisi.so:vendor/lib/hw/audio.primary.hi6250.so
 vendor/lib/libasd.so
 vendor/lib/libaudio_custom.so
@@ -22,6 +21,7 @@ vendor/lib64/libtfa9895.so
 vendor/lib64/libtuner553.so
 
 # Audio Configs - FIG-LX1 9.1.0.163(C432E8R1P5T8)
+vendor/etc/audio/audio_effects.xml|084a8a5efa331ac77f5e2e0f27526c8d583e6849
 vendor/etc/audio/audio_policy_configuration.xml|13ce1694762d63bdb7c2e96b154f28efdef00372
 
 # Audio Effects
