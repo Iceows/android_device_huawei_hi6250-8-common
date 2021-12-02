@@ -101,6 +101,7 @@ PRODUCT_PACKAGES += \
 # Init
 PRODUCT_PACKAGES += \
     fstab.hi6250 \
+    fstab.hi6250_ramdisk \
     init.audio.rc \
     init.balong_modem.rc \
     init.connectivity.bcm43455.rc \
