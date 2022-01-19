@@ -15,7 +15,7 @@
 #
 
 ## Common Path
-COMMON_PATH := device/huawei/hi6250-common
+COMMON_PATH := device/huawei/hi6250-8-common
 
 # APEX image
 DEXPREOPT_GENERATE_APEX_IMAGE := true
@@ -74,7 +74,7 @@ TARGET_KERNEL_CLANG_COMPILE := true
 
 # Kernel Source
 TARGET_KERNEL_CONFIG := merge_hi6250_defconfig
-TARGET_KERNEL_SOURCE := kernel/huawei/hi6250
+TARGET_KERNEL_SOURCE := kernel/huawei/hi6250-8
 
 # NFC
 NXP_CHIP_TYPE := 2

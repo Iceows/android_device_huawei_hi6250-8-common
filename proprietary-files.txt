@@ -1,5 +1,5 @@
 #
-# Vendor Blobs for hi6250-common - WAS-LX1 8.0.0.397(C432)
+# Vendor Blobs for hi6250-8-common - WAS-LX1 8.0.0.397(C432)
 #
 
 # Audio

@@ -15,10 +15,10 @@
 #
 
 ## Common Path
-COMMON_PATH := device/huawei/hi6250-common
+COMMON_PATH := device/huawei/hi6250-8-common
 
 ## Inherit common vendor blobs
-$(call inherit-product, vendor/huawei/hi6250-common/hi6250-common-vendor.mk)
+$(call inherit-product, vendor/huawei/hi6250-8-common/hi6250-8-common-vendor.mk)
 
 # AAPT
 PRODUCT_AAPT_CONFIG := normal
