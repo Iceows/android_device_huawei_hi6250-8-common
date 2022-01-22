@@ -87,11 +87,11 @@ vendor/etc/camera/davinci/default/cm_sunset.dat
 vendor/etc/camera/davinci/default/hdr.xml
 vendor/etc/camera/davinci/default/imgproc.xml
 vendor/etc/camera/davinci/default/multiframe.xml
-vendor/etc/camera/davinci/default/nicefood/imgproc.xml
+vendor/etc/camera/davinci/default/nicefood/imgproc.xml|5a010dd93ca2c4d0b3ed3d0a60270ad3817937fe
 vendor/etc/camera/dcsr/dcsr.xml
 vendor/etc/camera/dcsr/dcsr_kernel
 vendor/etc/camera/dcsr/sr.bin
-vendor/etc/camera/filter/filter.xml
+vendor/etc/camera/filter/filter.xml|701d385f31785a303085f3a45aacbe3e071ce365
 vendor/etc/camera/filter/mixIm.dat
 vendor/etc/camera/hwbeauty/default/hwbeauty_params.xml
 vendor/etc/camera/hwscope/default/hwsz.xml
@@ -101,10 +101,10 @@ vendor/etc/camera/mmi7cm/default/mmi7cmConfig.xml
 vendor/etc/camera/multidenoise/default/multiframe.xml
 vendor/etc/camera/multidenoise/multidenoise.xml
 vendor/etc/camera/nicefood/default/niceFood.dat
-vendor/etc/camera/opticalzoom/default/hwnie.xml
-vendor/etc/camera/opticalzoom/default/hwnie_co.xml
-vendor/etc/camera/opticalzoom/default/hwnie_star.xml
-vendor/etc/camera/opticalzoom/default/hwoz.xml
+vendor/etc/camera/opticalzoom/default/hwnie.xml|454d0dfde5d1408a0e4b34c79cc4433f4c5771d2
+vendor/etc/camera/opticalzoom/default/hwnie_co.xml|2b8487cf9a09499aca2faf30f9551539c42b6fd6
+vendor/etc/camera/opticalzoom/default/hwnie_star.xml|2960d19c0a29e1e268b3b08a0005cfbeb29064da
+vendor/etc/camera/opticalzoom/default/hwoz.xml|2ac0ad8f636350e914acd19199931ef02bfbf8c2
 vendor/etc/camera/opticalzoom/default/hwoz_kernel.dat
 vendor/etc/camera/opticalzoom/default/hwoz_kernel_6x.dat
 vendor/etc/camera/opticalzoom/default/multiframe.xml
@@ -126,7 +126,7 @@ vendor/etc/camera/tornado/NightModelTOA.model
 vendor/etc/camera/tornado/SunsetMinMaxTOA.txt
 vendor/etc/camera/tornado/SunsetModelTOA.model
 vendor/etc/camera/tornado/default/TornadoI.ini
-vendor/etc/camera/tracking/targettracking.xml
+vendor/etc/camera/tracking/targettracking.xml|8645a0c80d8a93c7547f5e1aed909d3b0910d677
 vendor/etc/camera/watermark/dm.argb
 vendor/etc/camera/watermark/dm.png
 vendor/etc/camera/watermark/param.xml
