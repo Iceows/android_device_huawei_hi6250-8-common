@@ -60,6 +60,10 @@ fi
 
 function blob_fixup() {
     case "${1}" in
+	vendor/etc/camera/*.xml)
+	    sed -i 's/gb2312/utf-8/g' "${2}"
+	    sed -i 's/GB2312/UTF-8/g' "${2}"
+	    ;;
 	vendor/lib*/hw/audio.primary.hi6250.so)
 	    "${PATCHELF}" --add-needed "libprocessgroup.so" "${2}"
 	    ;;
