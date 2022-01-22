@@ -58,11 +58,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     debug.rc
 
-# Display
-TARGET_SCREEN_DENSITY := 480
-TARGET_SCREEN_HEIGHT := 1920
-TARGET_SCREEN_WIDTH := 1080
-
 # DRM
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-impl \
