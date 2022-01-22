@@ -66,6 +66,9 @@ function blob_fixup() {
 	vendor/lib64/egl/libGLES_mali.so|vendor/lib64/hw/gralloc.hi6250.so)
 	    "${PATCHELF}" --add-needed "libutilscallstack.so" "${2}"
 	    ;;
+	vendor/lib*/libhwlog.so)
+	    "${PATCHELF}" --add-needed "libshim_log.so" "${2}"
+	    ;;
     esac
 }
 
