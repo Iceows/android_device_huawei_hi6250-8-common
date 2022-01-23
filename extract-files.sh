@@ -64,11 +64,11 @@ function blob_fixup() {
 	    sed -i 's/gb2312/utf-8/g' "${2}"
 	    sed -i 's/GB2312/UTF-8/g' "${2}"
 	    ;;
+	vendor/lib*/egl/libGLES_mali.so|vendor/lib*/hw/gralloc.hi6250.so)
+	    "${PATCHELF}" --add-needed "libutilscallstack.so" "${2}"
+	    ;;
 	vendor/lib*/hw/audio.primary.hi6250.so)
 	    "${PATCHELF}" --add-needed "libprocessgroup.so" "${2}"
-	    ;;
-	vendor/lib64/egl/libGLES_mali.so|vendor/lib64/hw/gralloc.hi6250.so)
-	    "${PATCHELF}" --add-needed "libutilscallstack.so" "${2}"
 	    ;;
 	vendor/lib*/libhwlog.so)
 	    "${PATCHELF}" --add-needed "libshim_log.so" "${2}"
