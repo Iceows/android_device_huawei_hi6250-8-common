@@ -1,5 +1,6 @@
-on post-fs-data
+on fs
     chmod 0644 /proc/cmdline
+    wait /vendor/phone.prop
     start mploader
 
 service mploader /vendor/bin/hw/mploader
