@@ -94,6 +94,7 @@ int main() {
     ALOGI("Loading phone properties for %s...", pid.c_str());
     int ret = load_props(f, pid);
     ALOGI("%s", ret == 0 ? "Success!" : "Fail!");
+    __system_property_set("sys.rilprops_ready",  (ret == 0 ? "1" : "0"));
 
     f.close();
     return ret;
