@@ -60,38 +60,95 @@ fi
 
 function blob_fixup() {
     case "${1}" in
-	vendor/etc/camera/*.xml)
-	    sed -i 's/gb2312/utf-8/g' "${2}"
-	    sed -i 's/GB2312/UTF-8/g' "${2}"
-	    ;;
-	vendor/lib*/egl/libGLES_mali.so|vendor/lib*/hw/gralloc.hi6250.so)
-	    "${PATCHELF}" --add-needed "libutilscallstack.so" "${2}"
-	    ;;
-	vendor/lib*/hw/audio.primary.hi6250.so)
+        system/lib*/libemcomutil.so)
+             "${PATCHELF}" --add-needed "libshim_emcom.so" "${2}"
+            ;;
+        vendor/etc/camera/*|odm/etc/camera/*)
+	    sed -i 's/gb2312/iso-8859-1/g' "${2}"
+	    sed -i 's/GB2312/iso-8859-1/g' "${2}"
+	    sed -i 's/xmlversion/xml version/g' "${2}"
+            ;;
+        vendor/bin/gpsdaemon)
+            sed -i 's/\([Uu][Cc][Nn][Vv]_[A-Za-z_]*\)_58/\1_70/g' "${2}"
+            ;;
+        vendor/bin/system_teecd \
+        |vendor/bin/teecd)
+            "${SIGSCAN}" -p "1f 05 00 71 41 03 00 54" -P "1f 05 00 71 1a 00 00 14" -f "${2}"
+            ;;
+        vendor/etc/perfgenius_*)
+            sed -i 's/version="2.0"/version="1.0"/g' "${2}"
+            ;;
+        vendor/lib*/egl/libGLES_mali.so|vendor/lib*/hw/gralloc.hi6250.so)
+            "${PATCHELF}" --add-needed "libutilscallstack.so" "${2}"
+            ;;
+        vendor/lib*/hw/camera.hi6250.so)
+            "${PATCHELF}" --replace-needed "libskia.so" "libhwui.so" "${2}"
+            "${PATCHELF}" --add-needed "libui_shim.so" "${2}"
+            ;;
+        vendor/lib64/hw/keystore.hi6250.so)
+            sed -i 's|/system/lib64/libcrypto.so|libcrypto.so\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00|g' "${2}"
+            ;;
+        vendor/lib64/libcamera_algo.so)
+            "${PATCHELF}" --replace-needed "libsensor.so" "libsensor_vendor.so" "${2}"
+            ;;
+        vendor/lib*/hw/vendor.huawei.hardware.hisupl@1.0-impl.so)
+            # Respect the HMI's ID, which is hisupl
+            sed -i 's|hisupl.hi1102|hisupl\x00\x00\x00\x00\x00\x00\x00|g' "${2}"
+            ;;
+        vendor/lib*/soundfx/libhuaweiprocessing.so)
+            "${PATCHELF}" --remove-needed "libicuuc.so" "${2}"
+            ;;
+        vendor/lib*/libwvhidl.so)
+            "${PATCHELF}" --replace-needed "libprotobuf-cpp-lite.so" "libprotobuf-cpp-lite-v29.so" "${2}"
+            ;;
+        vendor/lib64/libDocBeauty.so \
+        |vendor/lib64/libFaceBeautyMeiwoJNI.so \
+        |vendor/lib64/libcontrastCal.so)
+            sed -i 's|libgui.so|guivnd.so|g' "${2}"
+            ;;
+        vendor/lib*/libiawareperf_server.so)
+            "${PATCHELF}" --add-needed "libtinyxml2_shim.so" "${2}"
+            ;;
+        vendor/lib*/libperfhub_service.so)
+            "${PATCHELF}" --add-needed "libtinyxml2_shim.so" "${2}"
+            ;;
+        vendor/lib*/libRefocusContrastPosition.so|vendor/lib*/libhwlog.so)
+            "${PATCHELF}" --add-needed "libshim_log.so" "${2}"
+            ;;
+        vendor/lib*/hw/audio.primary_hisi.hi6250.so|vendor/lib*/libhivwservice.so)
 	    "${PATCHELF}" --add-needed "libprocessgroup.so" "${2}"
 	    ;;
-	vendor/lib*/libhwlog.so)
-	    "${PATCHELF}" --add-needed "libshim_log.so" "${2}"
-	    ;;
-	vendor/lib*/vendor.huawei.hardware.radio@1.0.so)
-	    "${PATCHELF}" --add-needed "libshim_ril.so" "${2}"
-	    ;;
+        vendor/lib64/hw/hwcomposer.hi6250.so)
+            "${PATCHELF}" --replace-needed "libui.so" "libui-v28.so" "${2}"
+            ;;
+        vendor/bin/hw/android.hardware.drm@1.0-service.widevine)
+            "${PATCHELF}" --add-needed "libbase_shim.so" "${2}"
+            ;;
+        vendor/lib*/vendor.huawei.hardware.graphics.gpucommon@1.0.so)
+            "${PATCHELF}" --add-needed "android.hardware.graphics.common@1.0_types.so" "${2}"
+            ;;
+        vendor/lib*/hw/vendor.huawei.hardware.sensors@1.0-impl.so)
+            "${PATCHELF}" --add-needed "libbase_shim.so" "${2}"
+            ;;
+        vendor/lib*/vendor.huawei.hardware.radio@1.0.so)
+            "${PATCHELF}" --add-needed "android.hardware.radio@1.0_types.so" "${2}"
+            ;;
     esac
 }
 
 if [ -z "${ONLY_TARGET}" ]; then
     # Initialize the helper for common device
-    setup_vendor "${DEVICE_COMMON}" "${VENDOR}" "${ANDROID_ROOT}" true "${CLEAN_VENDOR}"
+    setup_vendor "${DEVICE_COMMON}" "${VENDOR_COMMON:-$VENDOR}" "${ANDROID_ROOT}" true "${CLEAN_VENDOR}"
 
     extract "${MY_DIR}/proprietary-files.txt" "${SRC}" "${KANG}" --section "${SECTION}"
 fi
 
-if [ -z "${ONLY_COMMON}" ] && [ -s "${MY_DIR}/../${DEVICE}/proprietary-files.txt" ]; then
+if [ -z "${ONLY_COMMON}" ] && [ -s "${MY_DIR}/../../${VENDOR}/${DEVICE}/proprietary-files.txt" ]; then
     # Reinitialize the helper for device
-    source "${MY_DIR}/../${DEVICE}/extract-files.sh"
+    source "${MY_DIR}/../../${VENDOR}/${DEVICE}/extract-files.sh"
     setup_vendor "${DEVICE}" "${VENDOR}" "${ANDROID_ROOT}" false "${CLEAN_VENDOR}"
 
-    extract "${MY_DIR}/../${DEVICE}/proprietary-files.txt" "${SRC}" "${KANG}" --section "${SECTION}"
+    extract "${MY_DIR}/../../${VENDOR}/${DEVICE}/proprietary-files.txt" "${SRC}" "${KANG}" --section "${SECTION}"
 fi
 
 "${MY_DIR}/setup-makefiles.sh"

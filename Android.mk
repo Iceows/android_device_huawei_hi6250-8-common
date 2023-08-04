@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2021-2022 The LineageOS Project
+# Copyright (C) 2023 The LineageOS Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -7,66 +7,42 @@
 LOCAL_PATH := $(call my-dir)
 
 ifneq ($(filter prague warsaw,$(TARGET_DEVICE)),)
-include $(CLEAR_VARS)
 
-# OpenCL Symlinks
-LIBOPENCL1_SYMLINK := $(TARGET_OUT_VENDOR)/lib/libOpenCL.so.1
-$(LIBOPENCL1_SYMLINK): $(LOCAL_INSTALLED_MODULE)
-	@echo "Creating lib/libOpenCL.so.1 symlink: $@"
+include $(call all-makefiles-under,$(LOCAL_PATH))
+
+# EGL symlinks
+EGL_LIBS := libOpenCL.so libOpenCL.so.1 libOpenCL.so.1.1 hw/vulkan.hi6250.so
+
+EGL_32_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/lib/,$(EGL_LIBS))
+$(EGL_32_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	@echo "EGL 32 lib link: $@"
 	@mkdir -p $(dir $@)
-	$(hide) ln -sf $(TARGET_OUT_VENDOR)/lib/libOpenCL.so $@
+	@rm -rf $@
+	$(hide) ln -sf /vendor/lib/egl/libGLES_mali.so $@
 
-LIBOPENCL641_SYMLINK := $(TARGET_OUT_VENDOR)/lib64/libOpenCL.so.1
-$(LIBOPENCL641_SYMLINK): $(LOCAL_INSTALLED_MODULE)
-	@echo "Creating lib64/libOpenCL.so.1 symlink: $@"
+EGL_64_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/lib64/,$(EGL_LIBS))
+$(EGL_64_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	@echo "EGL 64 lib link: $@"
 	@mkdir -p $(dir $@)
-	$(hide) ln -sf $(TARGET_OUT_VENDOR)/lib64/libOpenCL.so $@
+	@rm -rf $@
+	$(hide) ln -sf /vendor/lib64/egl/libGLES_mali.so $@
 
-LIBOPENCL11_SYMLINK := $(TARGET_OUT_VENDOR)/lib/libOpenCL.so.1.1
-$(LIBOPENCL11_SYMLINK): $(LOCAL_INSTALLED_MODULE)
-	@echo "Creating lib/libOpenCL.so.1.1 symlink: $@"
+ALL_DEFAULT_INSTALLED_MODULES += $(EGL_32_SYMLINKS) $(EGL_64_SYMLINKS)
+
+LIBBT_SYMLINKS := $(TARGET_OUT_VENDOR)/lib64/libbt-vendor.so
+$(LIBBT_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	@echo "libbt-vendor link: $@"
 	@mkdir -p $(dir $@)
-	$(hide) ln -sf $(TARGET_OUT_VENDOR)/lib/libOpenCL.so.1 $@
+	@rm -rf $@
+	$(hide) ln -sf /vendor/lib64/libbt-vendor-hisi.so $@
 
-LIBOPENCL6411_SYMLINK := $(TARGET_OUT_VENDOR)/lib64/libOpenCL.so.1.1
-$(LIBOPENCL6411_SYMLINK): $(LOCAL_INSTALLED_MODULE)
-	@echo "Creating lib64/libOpenCL.so.1.1 symlink: $@"
-	@mkdir -p $(dir $@)
-	$(hide) ln -sf $(TARGET_OUT_VENDOR)/lib64/libOpenCL.so.1 $@
+ALL_DEFAULT_INSTALLED_MODULES += $(LIBBT_SYMLINKS)
 
-ALL_DEFAULT_INSTALLED_MODULES += \
-	$(LIBOPENCL1_SYMLINK) \
-	$(LIBOPENCL641_SYMLINK) \
-	$(LIBOPENCL11_SYMLINK) \
-	$(LIBOPENCL6411_SYMLINK)
-
-# Vulkan Symlinks
-LIBGLES_MALI_LIBRARY := /vendor/lib/egl/libGLES_mali.so
-LIBGLES_MALI64_LIBRARY := /vendor/lib64/egl/libGLES_mali.so
-
-VULKAN_SYMLINK := $(TARGET_OUT_VENDOR)/lib/hw/vulkan.hi6250.so
-$(VULKAN_SYMLINK): $(LOCAL_INSTALLED_MODULE)
-	@echo "Creating lib/hw/vulkan.hi6250.so symlink: $@"
-	@mkdir -p $(dir $@)
-	$(hide) ln -sf $(LIBGLES_MALI_LIBRARY) $@
-
-VULKAN64_SYMLINK := $(TARGET_OUT_VENDOR)/lib64/hw/vulkan.hi6250.so
-$(VULKAN64_SYMLINK): $(LOCAL_INSTALLED_MODULE)
-	@echo "Creating lib64/hw/vulkan.hi6250.so symlink: $@"
-	@mkdir -p $(dir $@)
-	$(hide) ln -sf $(LIBGLES_MALI64_LIBRARY) $@
-
-ALL_DEFAULT_INSTALLED_MODULES += \
-	$(VULKAN_SYMLINK) \
-	$(VULKAN64_SYMLINK)
-
-# native_packages hack
 NATIVE_PACKAGES_FIXUP := $(TARGET_OUT_VENDOR)/etc/native_packages.xml
 $(NATIVE_PACKAGES_FIXUP): $(TARGET_OUT_VENDOR)/etc/native_packages.bin
-	@echo "Move native_packages.bin to native_packages.xml"
+	@echo "Move vendor native_packages.bin to native_packages.xml"
 	$(hide) mv $(TARGET_OUT_VENDOR)/etc/native_packages.bin $@
 
 ALL_DEFAULT_INSTALLED_MODULES += $(NATIVE_PACKAGES_FIXUP)
 
-include $(call all-makefiles-under,$(LOCAL_PATH))
 endif

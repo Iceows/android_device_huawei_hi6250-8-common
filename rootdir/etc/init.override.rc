@@ -1,0 +1,12 @@
+#
+# Copyright (C) 2023 The LineageOS Project
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+service hwfactoryinterface-hal-1-1 /vendor/bin/hw/vendor.huawei.hardware.hwfactoryinterface@1.1-service
+    override
+    class hal
+    user system
+    group system wifi dhcp inet net_raw net_admin media_rw
+    seclabel u:r:vendor_hal_hisi_hwfactoryinterface_default:s0

@@ -1,51 +1,79 @@
-#
-# vendor.prop for hi6250-8-common
-#
+# Audio
+ro.audio.offload_wakelock=false
+ro.config.hw_music_lp=true
+ro.config.music_lp_vol=true
+ro.hardware.audio.primary=hisi_wrapper
 
 # Bluetooth
-ro.bt.bdaddr_path=/data/vendor/bluedroid/macbt
+ro.bt.bdaddr_path=/data/misc/bluedroid/macbt
+bluetooth.device.class_of_device=26,2,12
+bluetooth.profile.a2dp.source.enabled?=true
+bluetooth.profile.avrcp.target.enabled?=true
+bluetooth.profile.bas.client.enabled?=true
+bluetooth.profile.gatt.enabled?=true
+bluetooth.profile.hfp.ag.enabled?=true
+bluetooth.profile.hid.device.enabled?=true
+bluetooth.profile.hid.host.enabled?=true
+bluetooth.profile.map.server.enabled?=true
+bluetooth.profile.opp.enabled?=true
+bluetooth.profile.pan.nap.enabled?=true
+bluetooth.profile.pan.panu.enabled?=true
+bluetooth.profile.pbap.server.enabled?=true
+bluetooth.profile.sap.server.enabled?=true
 
-# Fastbootd
-ro.fastbootd.available=true
+# CPU
+persist.sys.cpuset.enable=1
+persist.sys.cpuset.subswitch=0
+persist.sys.iaware.cpuenable=true
 
-# Graphics
-ro.hwui.texture_cache_size=72
-ro.hwui.texture_cache_flushrate=0.4
-ro.hwui.layer_cache_size=48
-ro.hwui.path_cache_size=32
-ro.hwui.shape_cache_size=2
-ro.hwui.drop_shadow_cache_size=6
-ro.hwui.gradient_cache_size=1
-ro.hwui.text_large_cache_height=1024
-ro.hwui.text_large_cache_width=2048
-ro.hwui.text_small_cache_height=1024
-ro.hwui.text_small_cache_width=1024
-ro.hwui.r_buffer_cache_size=8
+# Display
 ro.opengles.version=196610
 debug.hwui.render_dirty_regions=false
+debug.renderengine.backend=threaded
+persist.alloc_buffer_sync=true
+persist.texture_cache_opt=1
+persist.smart_pool=1
+persist.touch_vsync_opt=1
+persist.touch_move_opt=1
 debug.sf.latch_unsignaled=1
 debug.sf.disable_backpressure=1
+persist.partial_update_support=1
+persist.rog_feature=1
 
-# Huawei
-bastet.service.enable=true
+# IMS
+ro.config.callinwifi=200,6
+ro.config.hw_volte_on=true
+
+# Kernel
 ro.config.enable_rcc=true
-ro.config.hw_sensorhub=true
-ro.config.hw_perfgenius=true
-ro.config.hw_board_ipa=true
-ro.tui.service=true
 
 # Media
+debug.stagefright.ccodec=0
+media.stagefright.thumbnail.prefer_hw_codecs=true
 persist.media.offload.enable=true
+persist.media.lowlatency.enable=false
 
-# Sdcard
+# MMU
+ro.config.mmu_en=1
+
+# Perfgenius
+ro.config.hw_perfgenius=true
+ro.config.hw_board_ipa=true
+
+# RIL
+ro.config.ipv4.mtu=1400
+bastet.service.enable=true
+ro.config.hw_eccNumUseRplmn=true
+persist.radio.apm_sim_not_pwdn=true
+
+# Sensor
+ro.config.hw_sensorhub=true
+
+# Storage
 persist.fw.force_adoptable=true
 
 # Touch
-persist.touch_vsync_opt=1
-persist.touch_move_opt=1
+ro.config.huawei_smallwindow=0,0,1080,1346
 
-# Recovery
-persist.sys.recovery_update=true
-
-# VoLTE
-ro.config.hw_volte_on=true
+# TUI
+ro.tui.service=true

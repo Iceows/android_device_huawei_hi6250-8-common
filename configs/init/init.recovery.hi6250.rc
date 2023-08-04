@@ -1,2 +1,0 @@
-on init
-    setprop sys.usb.configfs 1
