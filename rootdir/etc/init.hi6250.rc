@@ -814,3 +814,4 @@ service oeminfo_nvm /vendor/bin/oeminfo_nvm_server
     class core
     critical
     ioprio rt 4
+    seclabel u:r:oeminfo_nvm:s0
