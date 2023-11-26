@@ -63,20 +63,20 @@ function blob_fixup() {
         system/lib*/libemcomutil.so)
              "${PATCHELF}" --add-needed "libshim_emcom.so" "${2}"
             ;;
-        vendor/etc/camera/*|odm/etc/camera/*)
+        odm/etc/camera/*)
 	    sed -i 's/gb2312/iso-8859-1/g' "${2}"
 	    sed -i 's/GB2312/iso-8859-1/g' "${2}"
 	    sed -i 's/xmlversion/xml version/g' "${2}"
             ;;
-        vendor/bin/gpsdaemon)
-            sed -i 's/\([Uu][Cc][Nn][Vv]_[A-Za-z_]*\)_58/\1_70/g' "${2}"
-            ;;
-        vendor/bin/system_teecd \
-        |vendor/bin/teecd)
+        vendor/bin/teecd)
             "${SIGSCAN}" -p "1f 05 00 71 41 03 00 54" -P "1f 05 00 71 1a 00 00 14" -f "${2}"
             ;;
-        vendor/etc/perfgenius_*)
-            sed -i 's/version="2.0"/version="1.0"/g' "${2}"
+        vendor/etc/init/android.hardware.drm@1.0-service.widevine.rc)
+            sed -i 's/preavs/vendor/g' "${2}"
+            ;;
+        vendor/etc/init/rild.rc)
+            sed -i '1i on property:sys.rilprops_ready=1\n    start ril-daemon\n' "${2}"
+            echo "    disabled" >> "${2}"
             ;;
         vendor/lib*/egl/libGLES_mali.so|vendor/lib*/hw/gralloc.hi6250.so)
             "${PATCHELF}" --add-needed "libutilscallstack.so" "${2}"
@@ -105,12 +105,6 @@ function blob_fixup() {
         |vendor/lib64/libFaceBeautyMeiwoJNI.so \
         |vendor/lib64/libcontrastCal.so)
             sed -i 's|libgui.so|guivnd.so|g' "${2}"
-            ;;
-        vendor/lib*/libiawareperf_server.so)
-            "${PATCHELF}" --add-needed "libtinyxml2_shim.so" "${2}"
-            ;;
-        vendor/lib*/libperfhub_service.so)
-            "${PATCHELF}" --add-needed "libtinyxml2_shim.so" "${2}"
             ;;
         vendor/lib*/libRefocusContrastPosition.so|vendor/lib*/libhwlog.so)
             "${PATCHELF}" --add-needed "libshim_log.so" "${2}"

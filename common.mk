@@ -105,12 +105,7 @@ PRODUCT_PACKAGES += \
 
 # Connectivity
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/connectivity/init.connectivity.bcm43455.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/connectivity/init.connectivity.bcm43455.rc \
-    $(LOCAL_PATH)/connectivity/init.connectivity.bcm43xx.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/connectivity/init.connectivity.bcm43xx.rc \
-    $(LOCAL_PATH)/connectivity/init.connectivity.gps.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/connectivity/init.connectivity.gps.rc \
-    $(LOCAL_PATH)/connectivity/init.connectivity.hi1102.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/connectivity/init.connectivity.hi1102.rc \
-    $(LOCAL_PATH)/connectivity/init.connectivity.hisi.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/connectivity/init.connectivity.hisi.rc \
-    $(LOCAL_PATH)/connectivity/init.recovery.hi1102.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/connectivity/init.recovery.hi1102.rc
+    $(LOCAL_PATH)/connectivity/init.connectivity.hi1102.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/connectivity/init.connectivity.hi1102.rc
 
 # Display
 PRODUCT_PACKAGES += \
@@ -159,6 +154,7 @@ PRODUCT_PACKAGES += \
 
 # Hisi
 PRODUCT_PACKAGES += \
+    hisi_init \
     libxcollie
 
 # HIDL
@@ -167,6 +163,7 @@ PRODUCT_ENFORCE_VINTF_MANIFEST_OVERRIDE := true
 # IMS
 PRODUCT_BOOT_JARS += \
     hwEmui \
+    hwframework \
     hwTelephony-common
 
 PRODUCT_COPY_FILES += \
@@ -184,7 +181,6 @@ PRODUCT_PACKAGES += \
     init.hisi.usb.rc \
     init.override.rc \
     init.platform.rc \
-    init.manufacture.rc \
     init.tee.rc
 
 # Keymaster
@@ -198,7 +194,7 @@ PRODUCT_PACKAGES += \
 
 # Lights
 PRODUCT_PACKAGES += \
-    android.hardware.light@2.0.vendor
+    android.hardware.light-service.hisi
 
 # LiveDisplay
 PRODUCT_PACKAGES += \
@@ -230,7 +226,14 @@ PRODUCT_COPY_FILES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.0.vendor
+    android.hardware.power-service.hisi-libperfmgr
+
+PRODUCT_COPY_FILES += \
+    system/core/libprocessgroup/profiles/cgroups_28.json:$(TARGET_COPY_OUT_VENDOR)/etc/cgroups.json \
+    system/core/libprocessgroup/profiles/task_profiles_28.json:$(TARGET_COPY_OUT_VENDOR)/etc/task_profiles.json
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
 
 # Recovery
 PRODUCT_PACKAGES += \
@@ -264,7 +267,14 @@ PRODUCT_PACKAGES += \
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
-    hardware/hisi
+    hardware/google/interfaces \
+    hardware/google/pixel \
+    hardware/hisi \
+    hardware/hisi/power-libperfmgr
+
+# Touch
+PRODUCT_PACKAGES += \
+    vendor.lineage.touch@1.0-service.hisi
 
 # Ueventd
 PRODUCT_PACKAGES += \
@@ -276,7 +286,8 @@ PRODUCT_PACKAGES += \
 
 # Vibrator
 PRODUCT_PACKAGES += \
-    android.hardware.vibrator@1.0.vendor
+    android.hardware.vibrator@1.0-impl \
+    android.hardware.vibrator@1.0-service
 
 # VNDK
 PRODUCT_PACKAGES += \

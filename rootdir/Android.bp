@@ -96,13 +96,6 @@ prebuilt_etc {
 }
 
 prebuilt_etc {
-    name: "init.manufacture.rc",
-    src: "etc/init.manufacture.rc",
-    sub_dir: "init/hw",
-    vendor: true,
-}
-
-prebuilt_etc {
     name: "ueventd.hi6250.rc",
     filename: "ueventd.rc",
     src: "etc/ueventd.hi6250.rc",
