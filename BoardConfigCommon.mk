@@ -91,6 +91,10 @@ BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
 TARGET_COPY_OUT_ODM := odm
 TARGET_COPY_OUT_VENDOR := vendor
 
+# Charger 
+BOARD_CHARGER_DISABLE_INIT_BLANK := true
+BACKLIGHT_PATH := /sys/class/leds/lcd_backlight0/brightness
+
 # Platform
 TARGET_BOARD_PLATFORM := hi6250
 
