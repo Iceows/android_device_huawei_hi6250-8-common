@@ -77,3 +77,6 @@ ro.config.huawei_smallwindow=0,0,1080,1346
 
 # TUI
 ro.tui.service=true
+
+# Charger
+ro.charger.disable_init_blank=true
