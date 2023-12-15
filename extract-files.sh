@@ -68,9 +68,9 @@ function blob_fixup() {
 	    sed -i 's/GB2312/iso-8859-1/g' "${2}"
 	    sed -i 's/xmlversion/xml version/g' "${2}"
             ;;
-        vendor/bin/teecd)
-            "${SIGSCAN}" -p "1f 05 00 71 41 03 00 54" -P "1f 05 00 71 1a 00 00 14" -f "${2}"
-            ;;
+        #vendor/bin/teecd)
+        #    "${SIGSCAN}" -p "1f 05 00 71 41 03 00 54" -P "1f 05 00 71 1a 00 00 14" -f "${2}"
+        #    ;;
         vendor/etc/init/android.hardware.drm@1.0-service.widevine.rc)
             sed -i 's/preavs/vendor/g' "${2}"
             ;;
@@ -85,6 +85,7 @@ function blob_fixup() {
             "${PATCHELF}" --replace-needed "libskia.so" "libhwui.so" "${2}"
             "${PATCHELF}" --add-needed "libui_shim.so" "${2}"
             ;;
+        # Replace hardcode libcrypto path by default libcrypto
         vendor/lib64/hw/keystore.hi6250.so)
             sed -i 's|/system/lib64/libcrypto.so|libcrypto.so\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00|g' "${2}"
             ;;
@@ -109,7 +110,7 @@ function blob_fixup() {
         vendor/lib*/libRefocusContrastPosition.so|vendor/lib*/libhwlog.so)
             "${PATCHELF}" --add-needed "libshim_log.so" "${2}"
             ;;
-        vendor/lib*/hw/audio.primary_hisi.hi6250.so|vendor/lib*/libhivwservice.so)
+        vendor/lib*/hw/audio.primary.hi6250.so|vendor/lib*/libhivwservice.so)
 	    "${PATCHELF}" --add-needed "libprocessgroup.so" "${2}"
 	    ;;
         vendor/lib64/hw/hwcomposer.hi6250.so)
