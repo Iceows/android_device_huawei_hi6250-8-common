@@ -2412,7 +2412,12 @@ vendor/lib64/vendor.huawei.hardware.libteec@1.0.so
 vendor/lib64/vendor.huawei.hardware.teecdaemon@1.0.so
 
 # TEE - from NXT 8.0.0 OPR6.170623.010
-vendor/etc/DroidSansFallbackTui.ttf|2f8a266389a8e22f68f402b775731eec6b760334
+# vendor/etc/DroidSansFallbackTui.ttf|2f8a266389a8e22f68f402b775731eec6b760334
+
+# TEE - system daemon
+system/bin/system_teecd
+system/lib64/libtuidaemon.so
+system/lib/libtuidaemon.so
 
 # TEE Configs
 vendor/bin/6c8cf255-ca98-439e-a98e-ade64022ecb6.sec

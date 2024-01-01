@@ -1,8 +1,46 @@
-//
-// Copyright (C) 2023 The LineageOS Project
-//
-// SPDX-License-Identifier: Apache-2.0
-//
-
 soong_namespace {
+}
+
+cc_prebuilt_library_shared {
+    name: "libjni_latinimegoogle",
+    strip: {
+        none: true,
+    },
+    target: {
+        android_arm: {
+            srcs: ["system/lib/libjni_latinimegoogle.so"],
+        },
+        android_arm64: {
+            srcs: ["system/lib64/libjni_latinimegoogle.so"],
+        },
+    },
+    compile_multilib: "both",
+    prefer: true,
+    check_elf_files: false,
+    soc_specific: false,
+}
+
+cc_prebuilt_library_shared {
+    name: "libpn551_fw",
+    strip: {
+        none: true,
+    },
+    target: {
+        android_arm64: {
+            srcs: ["system/lib64/libpn551_fw.so"],
+        },
+    },
+    compile_multilib: "64",
+    prefer: true,
+    check_elf_files: false,
+    soc_specific: true,
+}
+
+
+android_app_import {
+	name: "gnss_supl20service_hisi",
+	owner: "huawei",
+	apk: "system/app/gnss_supl20service_hisi/gnss_supl20service_hisi.apk",
+        certificate: "platform",
+        privileged: false
 }

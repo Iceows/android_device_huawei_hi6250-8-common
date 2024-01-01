@@ -21,15 +21,6 @@
         <fqname>@4.0::IEffectsFactory/default</fqname>
     </hal>
     <hal format="hidl">
-        <name>android.hardware.biometrics.fingerprint</name>
-        <transport>hwbinder</transport>
-        <version>2.1</version>
-        <interface>
-            <name>IBiometricsFingerprint</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
         <name>android.hardware.bluetooth</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
@@ -37,6 +28,7 @@
             <name>IBluetoothHci</name>
             <instance>default</instance>
         </interface>
+        <fqname>@1.0::IBluetoothHci/default</fqname>
     </hal>
     <hal format="hidl">
         <name>android.hardware.bluetooth.audio</name>
@@ -46,6 +38,7 @@
             <name>IBluetoothAudioProvidersFactory</name>
             <instance>default</instance>
         </interface>
+        <fqname>@2.1::IBluetoothAudioProvidersFactory/default</fqname>
     </hal>
     <hal format="hidl">
         <name>android.hardware.camera.provider</name>
@@ -55,6 +48,7 @@
             <name>ICameraProvider</name>
             <instance>legacy/0</instance>
         </interface>
+        <fqname>@2.4::ICameraProvider/legacy/0</fqname>
     </hal>
     <hal format="hidl">
         <name>android.hardware.configstore</name>
@@ -69,17 +63,8 @@
     <hal format="hidl">
         <name>android.hardware.drm</name>
         <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>ICryptoFactory</name>
-            <instance>default</instance>
-            <instance>widevine</instance>
-        </interface>
-        <interface>
-            <name>IDrmFactory</name>
-            <instance>default</instance>
-            <instance>widevine</instance>
-        </interface>
+        <fqname>@1.2::ICryptoFactory/widevine</fqname>
+        <fqname>@1.2::IDrmFactory/widevine</fqname>
     </hal>
     <hal format="hidl">
         <name>android.hardware.gnss</name>
@@ -89,6 +74,7 @@
             <name>IGnss</name>
             <instance>default</instance>
         </interface>
+        <fqname>@1.0::IGnss/default</fqname>
     </hal>
     <hal format="hidl">
         <name>android.hardware.graphics.allocator</name>
@@ -98,6 +84,7 @@
             <name>IAllocator</name>
             <instance>default</instance>
         </interface>
+        <fqname>@2.0::IAllocator/default</fqname>
     </hal>
     <hal format="hidl">
         <name>android.hardware.graphics.composer</name>
@@ -107,6 +94,7 @@
             <name>IComposer</name>
             <instance>default</instance>
         </interface>
+        <fqname>@2.1::IComposer/default</fqname>
     </hal>
     <hal format="hidl">
         <name>android.hardware.graphics.mapper</name>
@@ -116,6 +104,7 @@
             <name>IMapper</name>
             <instance>default</instance>
         </interface>
+        <fqname>@2.0::IMapper/default</fqname>
     </hal>
     <hal format="hidl">
         <name>android.hardware.health</name>
@@ -125,6 +114,7 @@
             <name>IHealth</name>
             <instance>default</instance>
         </interface>
+        <fqname>@2.1::IHealth/default</fqname>
     </hal>
     <hal format="hidl">
         <name>android.hardware.keymaster</name>
@@ -134,6 +124,7 @@
             <name>IKeymasterDevice</name>
             <instance>default</instance>
         </interface>
+        <fqname>@3.0::IKeymasterDevice/default</fqname>
     </hal>
     <hal format="hidl">
         <name>android.hardware.media.omx</name>
@@ -147,6 +138,8 @@
             <name>IOmxStore</name>
             <instance>default</instance>
         </interface>
+        <fqname>@1.0::IOmx/default</fqname>
+        <fqname>@1.0::IOmxStore/default</fqname>
     </hal>
     <hal format="hidl">
         <name>android.hardware.memtrack</name>
@@ -156,15 +149,17 @@
             <name>IMemtrack</name>
             <instance>default</instance>
         </interface>
+        <fqname>@1.0::IMemtrack/default</fqname>
     </hal>
     <hal format="hidl">
         <name>android.hardware.nfc</name>
         <transport>hwbinder</transport>
-        <version>1.1</version>
+        <version>1.2</version>
         <interface>
             <name>INfc</name>
             <instance>default</instance>
         </interface>
+        <fqname>@1.2::INfc/default</fqname>
     </hal>
     <hal format="hidl">
         <name>android.hardware.radio</name>
@@ -197,15 +192,6 @@
         </interface>
     </hal>
     <hal format="hidl">
-        <name>android.hardware.sensors</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>ISensors</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
         <name>android.hardware.vibrator</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
@@ -223,20 +209,10 @@
             <instance>default</instance>
         </interface>
     </hal>
-    s<hal format="hidl" override="true">
+    <hal format="hidl" override="true">
         <name>android.hardware.secure_element</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.soundtrigger</name>
-        <transport>hwbinder</transport>
-        <version>2.2</version>
-        <interface>
-            <name>ISoundTriggerHw</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@2.2::ISoundTriggerHw/default</fqname>
     </hal>
     <hal format="hidl">
         <name>vendor.huawei.hardware.biometrics.fingerprint</name>
@@ -246,6 +222,7 @@
             <name>IExtBiometricsFingerprint</name>
             <instance>default</instance>
         </interface>
+        <fqname>@2.1::IExtBiometricsFingerprint/default</fqname>
     </hal>
     <hal format="hidl">
         <name>vendor.huawei.hardware.biometrics.hwfacerecognize</name>
@@ -282,15 +259,26 @@
             <name>IFmControl</name>
             <instance>fm</instance>
         </interface>
+    </hal>        
+    <hal format="hidl">
+        <name>android.hardware.gatekeeper</name>
+        <transport>hwbinder</transport>
+        <impl level="generic"></impl>
+        <version>1.0</version>
+        <interface>
+            <name>IGatekeeper</name>
+            <instance>default</instance>
+        </interface>
     </hal>
     <hal format="hidl">
         <name>vendor.huawei.hardware.gnss</name>
         <transport>hwbinder</transport>
-        <version>1.0</version>
+        <version>1.2</version>
         <interface>
             <name>IHWGnss</name>
             <instance>default</instance>
         </interface>
+        <fqname>@1.2::IHWGnss/default</fqname>
     </hal>
     <hal format="hidl">
         <name>vendor.huawei.hardware.graphics.displayeffect</name>
@@ -327,6 +315,7 @@
             <name>IHuaweiAntiTheft</name>
             <instance>huaweiantitheft</instance>
         </interface>
+        <fqname>@1.0::IHuaweiAntiTheft/huaweiantitheft</fqname>
     </hal>
     <hal format="hidl">
         <name>vendor.huawei.hardware.huaweisigntool</name>
@@ -336,6 +325,7 @@
             <name>ISignTool</name>
             <instance>huaweisigntool</instance>
         </interface>
+        <fqname>@1.0::ISignTool/huaweisigntool</fqname>
     </hal>
     <hal format="hidl">
         <name>vendor.huawei.hardware.hwdisplay</name>
@@ -345,6 +335,7 @@
             <name>IDisplay</name>
             <instance>default</instance>
         </interface>
+        <fqname>@1.0::IDisplay/default</fqname>
     </hal>
     <hal format="hidl">
         <name>vendor.huawei.hardware.hwdisplay.displayengine</name>
@@ -423,6 +414,17 @@
             <name>ISensors</name>
             <instance>default</instance>
         </interface>
+        <fqname>@1.0::ISensors/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.sensors</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>ISensors</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.0::ISensors/default</fqname>
     </hal>
     <hal format="hidl">
         <name>vendor.huawei.hardware.tp</name>
@@ -432,6 +434,7 @@
             <name>ITouchscreen</name>
             <instance>default</instance>
         </interface>
+        <fqname>@1.0::ITouchscreen/default</fqname>
     </hal>
     <hal format="hidl">
         <name>vendor.nxp.nxpnfc</name>

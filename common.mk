@@ -7,6 +7,17 @@
 # Setup dalvik vm configs
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
+## Common Path
+COMMON_PATH := device/huawei/hi6250-8-common
+
+## Inherit common vendor blobs
+$(call inherit-product, vendor/huawei/hi6250-8-common/hi6250-8-common-vendor.mk)
+
+
+# IME Input
+PRODUCT_PACKAGES += \
+    libjni_latinimegoogle
+
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
@@ -53,7 +64,7 @@ PRODUCT_COPY_FILES += \
 # Audio
 PRODUCT_PACKAGES += \
     android.hardware.audio.service.hisi \
-    android.hardware.audio@4.0-impl.hisi \
+    android.hardware.audio@4.0-impl-hisi \
     android.hardware.audio.effect@4.0-impl \
     android.hardware.soundtrigger@2.2-impl \
     audio.r_submix.default \
@@ -115,10 +126,6 @@ PRODUCT_PACKAGES += \
     libgui_vendor \
     libstdc++.vendor
 
-# Connectivity
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/connectivity/init.connectivity.hi1102.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/connectivity/init.connectivity.hi1102.rc
-
 # Display
 PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-impl \
@@ -135,28 +142,34 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.graphics.common@1.0_types.vendor
 
-# Fingerprint
-PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint@2.1.vendor
-
-# Fstab
-PRODUCT_PACKAGES += \
-    fstab.hi6250 \
-    fstab.hi6250_ramdisk \
-    fstab.modem
+# Input
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/keylayout/fingerprint.kl:system/usr/keylayout/fingerprint.kl
 
 # DRM
 PRODUCT_PACKAGES += \
-    android.hardware.drm@1.0-impl \
-    android.hardware.drm@1.0-service
+    android.hardware.drm@1.2.vendor \
+    android.hardware.drm-service.clearkey
+
+
+# ConfigStore (only service)
+PRODUCT_PACKAGES += \
+    android.hardware.configstore@1.1-service
+
+# Fingerprint sensor
+PRODUCT_PACKAGES += \
+    android.hardware.biometrics.fingerprint@2.1-service
+#    android.hardware.biometrics.fingerprint@2.1.vendor
 
 # GPS
 PRODUCT_PACKAGES += \
-    android.hardware.gnss@1.0.vendor
+    android.hardware.gnss@1.0.vendor \
+    android.hardware.gnss@1.1.vendor
 
 # Gatekeeper HAL
 PRODUCT_PACKAGES += \
-    android.hardware.gatekeeper@1.0-service.software
+    android.hardware.gatekeeper@1.0-impl \
+    android.hardware.gatekeeper@1.0-service
 
 # Health
 PRODUCT_PACKAGES += \
@@ -182,18 +195,29 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/privapp-permissions-com.huawei.ims.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-com.huawei.ims.xml
 
 # Init scripts
-PRODUCT_PACKAGES += \
-    init.audio.rc \
-    init.balong_modem.rc \
-    init.connectivity.rc \
-    init.device.rc \
-    init.extmodem.rc \
-    init.hi6250.rc \
-    init.hisi.rc \
-    init.hisi.usb.rc \
-    init.override.rc \
-    init.platform.rc \
-    init.tee.rc
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/init/init.audio.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.audio.rc \
+    $(LOCAL_PATH)/configs/init/init.balong_modem.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.balong_modem.rc \
+    $(LOCAL_PATH)/configs/init/init.connectivity.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.connectivity.rc \
+    $(LOCAL_PATH)/configs/init/init.connectivity.hi1102.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/connectivity/init.connectivity.hi1102.rc \
+    $(LOCAL_PATH)/configs/init/init.device.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.device.rc \
+    $(LOCAL_PATH)/configs/init/init.extmodem.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.extmodem.rc \
+    $(LOCAL_PATH)/configs/init/init.hi6250.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.hi6250.rc \
+    $(LOCAL_PATH)/configs/init/init.hisi.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.hisi.rc \
+    $(LOCAL_PATH)/configs/init/init.hisi.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.hisi.usb.rc \
+    $(LOCAL_PATH)/configs/init/init.override.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.override.rc \
+    $(LOCAL_PATH)/configs/init/init.platform.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.platform.rc \
+    $(LOCAL_PATH)/configs/init/init.recovery.hi6250.rc:$(TARGET_COPY_OUT_VENDOR)/root/init.recovery.hi6250.rc \
+    $(LOCAL_PATH)/configs/init/init.tee.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.tee.rc \
+    $(LOCAL_PATH)/configs/init/ueventd.hi6250.rc:$(TARGET_COPY_OUT_VENDOR)/etc/ueventd.rc
+
+
+# Fstab
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/init/fstab.hi6250:$(TARGET_COPY_OUT_RAMDISK)/fstab.hi6250 \
+    $(LOCAL_PATH)/configs/init/fstab.hi6250:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.hi6250 \
+    $(LOCAL_PATH)/configs/init/fstab.modem:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.modem
+
 
 # Keymaster
 PRODUCT_PACKAGES += \
@@ -239,10 +263,15 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/nfc/libnfc-nci.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-nci.conf
+    
+# NFC Firmware
+PRODUCT_PACKAGES += \
+    libpn551_fw
+
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power-service.hisi-libperfmgr
+    android.hardware.power-service.hisi
 
 PRODUCT_COPY_FILES += \
     system/core/libprocessgroup/profiles/cgroups_28.json:$(TARGET_COPY_OUT_VENDOR)/etc/cgroups.json \
@@ -250,10 +279,6 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
-
-# Recovery
-PRODUCT_PACKAGES += \
-    init.recovery.hi6250.rc
 
 # Radio
 PRODUCT_PACKAGES += \
@@ -264,10 +289,18 @@ PRODUCT_PACKAGES += \
 
 # Sensors
 PRODUCT_PACKAGES += \
-    android.hardware.sensors@1.0.vendor
+    android.hardware.sensors@1.0-impl \
+    android.hardware.sensors@1.0-service
 
+# For GNSS
 PRODUCT_PACKAGES += \
     android.frameworks.sensorservice@1.0.vendor
+
+
+PRODUCT_PACKAGES += \
+    android.hardware.usb@1.0-service \
+    com.android.future.usb.accessory
+
 
 # Shims
 PRODUCT_PACKAGES += \
@@ -286,19 +319,14 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/google/interfaces \
     hardware/google/pixel \
     hardware/hisi \
-    hardware/hisi/power-libperfmgr
+    hardware/hisi/power
 
 # Touch
 PRODUCT_PACKAGES += \
     vendor.lineage.touch@1.0-service.hisi
 
-# Ueventd
-PRODUCT_PACKAGES += \
-    ueventd.hi6250.rc
-
-# USB
-PRODUCT_PACKAGES += \
-    android.hardware.usb@1.0-service.basic
+# Treble
+PRODUCT_USE_VNDK_OVERRIDE := true
 
 # Vibrator
 PRODUCT_PACKAGES += \
@@ -326,5 +354,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf \
     $(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf
 
-# Call the proprietary setup
-$(call inherit-product, vendor/huawei/hi6250-8-common/hi6250-8-common-vendor.mk)
+# AGPS Supl20
+PRODUCT_PACKAGES += \
+    gnss_supl20service_hisi
+PRODUCT_COPY_FILES += \
+     $(COMMON_PATH)/system/etc/gnss/config/gnss_suplconfig_hisi.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/gnss/config/gnss_suplconfig_hisi.xml \
+     $(COMMON_PATH)/system/etc/permissions/privapp-permissions-supl.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-supl.xml
+

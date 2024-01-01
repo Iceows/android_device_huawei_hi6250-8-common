@@ -3,19 +3,27 @@ on init
     chmod 0400 /dev/hisi_teelog
 
 #secure os tee agent
+service teeauth /system/bin/tee_auth_daemon
+    socket tui_daemon stream 660 root system
+    socket tee-multi-user stream 660 root system
+    class core
+    user root
+    group root system readproc
+    seclabel u:r:teecd_auth:s0
+
 service teecd /vendor/bin/teecd
     class core
     user root
-    group root readproc
-    seclabel u:r:tee:s0
+    group root system readproc
     disabled
+    seclabel u:r:tee:s0
 
 service teelogcat /vendor/bin/tlogcat -f
-class late_start
-user root
-group system
-disabled
-seclabel u:r:hisilogcat:s0
+    class late_start
+    user root
+    group system
+    disabled
+    seclabel u:r:hisilogcat:s0
 
 # Start debug services only if persist.sys.huawei.debug.on is set to 1
 on property:persist.sys.huawei.debug.on=1
@@ -25,6 +33,7 @@ start teelogcat
 on property:persist.sys.huawei.debug.on=0
 stop teelogcat
 
+# set sec_storage_data can be access by teecd to store fingerprint infos
 on post-fs-data
     mkdir /data/sec_storage_data 0700 system system
     restorecon /data/sec_storage_data
