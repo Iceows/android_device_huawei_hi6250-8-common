@@ -62,20 +62,23 @@
 /dev/v4l-subdev15					0660  system 	camera
 /dev/v4l-subdev16					0660  system 	camera
 
-/sys/class/leds/torch	brightness			0664  system    system
-/sys/class/leds/torch	flash_thermal_protect		0664  system    system
+/sys/class/leds/torch	brightness			    0664  system    system
+/sys/class/leds/torch	flash_thermal_protect	0664  system    system
 # /sys/class/camerafs/node/dual_leds			0664  system    system
-/dev/hifi_misc                                          0770  root      audio
-/dev/voice_proxy_vowifi                                 0660  root      audio
+
+/sys/class/sensors/rpc_sensor 	rpc_motion_req	0664  system    system
+
+/dev/hifi_misc                                  0770  root      audio
+/dev/voice_proxy_vowifi                         0660  root      audio
 /dev/dsm                            0660  system    system
 
-/dev/block/mmcblk0				0660	system	system
-/dev/block/mmcblk0p4                		0660	system	system
+/dev/block/mmcblk0				    0660	system	system
+/dev/block/mmcblk0p4                0660	system	system
 /dev/block/mmcblk0p7				0660	root	system
-/dev/block/mmcblk0p9                		0660	system	system
+/dev/block/mmcblk0p9                0660	system	system
 /dev/block/mmcblk0p17				0660	system	system
 /dev/block/mmcblk0p19				0660	system	system
-/dev/block/mmcblk0p20               		0660	system	system
+/dev/block/mmcblk0p20               0660	system	system
 /dev/block/mmcblk0p22				0660	system	system
 /dev/block/mmcblk0p25				0660	system	system
 /dev/block/mmcblk0p41				0660	system	system
