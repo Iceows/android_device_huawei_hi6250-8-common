@@ -1,7 +1,7 @@
 # Audio
 ro.audio.offload_wakelock=false
 ro.config.hw_music_lp=true
-ro.config.music_lp_vol=tru
+ro.config.music_lp_vol=true
 ro.hardware.audio.primary=hi6250
 
 # Bluetooth
