@@ -2,7 +2,7 @@
 ro.audio.offload_wakelock=false
 ro.config.hw_music_lp=true
 ro.config.music_lp_vol=true
-ro.hardware.audio.primary=hi6250
+ro.hardware.audio.primary=hisi_wrapper
 
 # Bluetooth
 persist.vendor.bt.a2dp_offload_cap=sbc-aptx-aptxhd-aac-ldac
