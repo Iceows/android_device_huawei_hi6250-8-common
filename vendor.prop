@@ -1,3 +1,7 @@
+#
+# vendor.prop for hi6250-common
+#
+
 # Audio
 ro.audio.offload_wakelock=false
 ro.config.hw_music_lp=true
@@ -31,6 +35,8 @@ ro.hardware.gatekeeper=hi6250
 # Keystore
 # ro.hardware.keystore=hi6250
 
+# Fastbootd
+ro.fastbootd.available=false
 
 # CPU
 persist.sys.cpuset.enable=1
@@ -50,14 +56,24 @@ persist.texture_cache_opt=1
 persist.smart_pool=1
 persist.touch_vsync_opt=1
 persist.touch_move_opt=1
-debug.sf.latch_unsignaled=1
-debug.sf.disable_backpressure=1
+
+
 persist.partial_update_support=1
 persist.rog_feature=1
+# SurfaceFlinger
+debug.sf.latch_unsignaled=1
+debug.sf.disable_backpressure=1
 
 # IMS
 ro.config.callinwifi=200,6
 ro.config.hw_volte_on=true
+
+# IR
+config.disable_consumerir=true
+
+# Keymaster
+ro.config.keypasstouser=true
+ro.config.hw_ukey_version=2
 
 # Kernel
 ro.config.enable_rcc=true
@@ -87,8 +103,17 @@ persist.fw.force_adoptable=true
 # Touch
 ro.config.huawei_smallwindow=0,0,1080,1346
 
-# TUI
-ro.tui.service=true
-
 # Charger
 ro.charger.disable_init_blank=true
+ro.charger.enable_suspend=true
+
+# TUI
+ro.tui.service=true
+ro.vendor.tui.service=true
+
+# USB
+persist.media.usbvoice.enable=true
+persist.media.usbvoice.name=USB-Audio - HUAWEI GLASS
+# A-GPS
+ro.hardware.hisupl=hi1102
+
